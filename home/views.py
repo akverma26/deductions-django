@@ -6,8 +6,6 @@ from deducted.models import Deducted
 
 import json
 
-PARENT_FOLDER = 'deducted/'
-
 # Create your views here.
 def home(request):
     deductions = Deducted.objects.all()

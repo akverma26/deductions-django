@@ -14,7 +14,8 @@ from deducted.models import Deducted
 
 IST = pytz.timezone('Asia/Kolkata')
 
-PARENT_FOLDER = 'deducted/'
+PARENT_DIR = ''
+PRE_DIR = 'deducted/'
 
 # Create your views here.
 def site_admin(request):
@@ -90,7 +91,7 @@ def add_page_to_database(request):
 
     logs.append(['s', 'Directory decided: '+folder_name])
 
-    logs += download_file(manifest_url, 'manifest.json', PARENT_FOLDER+'static/'+folder_name)
+    logs += download_file(manifest_url, 'manifest.json', PARENT_DIR + PRE_DIR +'static/'+folder_name)
     manifest = requests.get(manifest_url).json()
 
     static = manifest['static']
@@ -101,21 +102,21 @@ def add_page_to_database(request):
         logs += download_file(
             manifest_url[:-13]+'static/'+fl,
             fl,
-            PARENT_FOLDER+'static/'+folder_name
+            PARENT_DIR + PRE_DIR +'static/'+folder_name
         )
 
     for fl in templates:
         logs += download_file(
             manifest_url[:-13]+'templates/'+fl,
             fl,
-            PARENT_FOLDER+'templates/'+folder_name
+            PARENT_DIR +'deducted/templates/'+folder_name
         )
 
     for fl in scripts:
         logs += download_file(
-            manifest_url[:-13]+'scripts/'+fl,
+            manifest_url[:-13]+'static/'+fl,
             fl,
-            PARENT_FOLDER+'scripts/'+folder_name
+            PARENT_DIR + PRE_DIR  +'static/'+folder_name
         )
 
     try:

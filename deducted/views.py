@@ -5,13 +5,14 @@ from .models import Deducted
 from bs4 import BeautifulSoup
 import json
 
-PARENT_DIR = 'deducted/'
+PARENT_DIR = ''
+PRE_DIR = 'deducted/'
 
 # Create your views here.
 def deducted(request, deduction_id):
     deduction = Deducted.objects.get(id=deduction_id[-14:])
     dir_name = folder_format(deduction.dir_name)
-    manifest = PARENT_DIR+'static/'+dir_name+'manifest.json'
+    manifest = PARENT_DIR + PRE_DIR +'static/'+dir_name+'manifest.json'
     with open(manifest, 'r') as mf:
         manifest = json.load(mf)
     
@@ -21,7 +22,7 @@ def deducted(request, deduction_id):
         pass
 
     if page_type=='Typora':
-        with open(PARENT_DIR+'templates/'+dir_name+'index.html', 'r') as html:
+        with open(PARENT_DIR +'deducted/templates/'+dir_name+'index.html', 'r') as html:
             html = BeautifulSoup(html.read(), 'lxml')
         html = str(html.body)
         html = html.replace('body', 'div')
@@ -31,8 +32,8 @@ def deducted(request, deduction_id):
         context = {}
         script = manifest['data']['script']
         if script:
-            f_script = PARENT_DIR + 'static/' + dir_name + script[0]
-            f_content = PARENT_DIR + 'static/' + dir_name + 'content.xml'
+            f_script = PARENT_DIR + PRE_DIR + 'static/' + dir_name + script[0]
+            f_content = PARENT_DIR + PRE_DIR + 'static/' + dir_name + 'content.xml'
             import importlib
             spec = importlib.util.spec_from_file_location('script', f_script)
             module = importlib.util.module_from_spec(spec)
