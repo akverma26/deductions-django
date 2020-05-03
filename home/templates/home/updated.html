@@ -1,0 +1,36 @@
+{% load static %}
+{% load tags_filters %}
+
+<a class="updated-deduction" href="/deducted/{{latest_modified.title}}-{{latest_modified.id}}">
+    <div class="header">
+        <span>Last Updated</span>
+        <span class="uploaded">{{ latest_modified.date_uploaded|date }}</span>
+    </div>
+    <div class="title">
+        <div class="bg"></div>
+        <div class="title-text">
+            {{ latest_modified.title }}
+        </div>
+        <div class="bg"></div>
+    </div>
+    <div class="info-1">
+        <span class="Author"> <i class="fas fa-pencil-alt"></i>{{ latest_modified.author }}</span>
+        <span class="uploaded"> <i class="fas fa-calendar-plus"></i>{{ latest_modified.date_uploaded|date }}</span>
+        <span class="uploaded"> <i class="fas fa-calendar-check"></i>{{ latest_modified.date_last_modified|date }}</span>
+    </div>
+    <div class="short-description">
+            {{ latest_modified.description }}
+    </div>
+    <div class="info-2">
+        <span class="tags-div">
+            <i class="fas fa-tags"></i>
+            
+            {% with tags=latest_modified.tags|split:" " %}
+                {% for tag in tags %}
+                    <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            {% endwith %}
+            
+        </span>
+    </div>
+</a>

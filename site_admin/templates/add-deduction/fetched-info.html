@@ -1,0 +1,45 @@
+<input type="text" disabled="disabled" id="manifest_url" placeholder="URL of Manifest.json" value="{{ manifest_url }}">
+<input type="text" disabled="disabled" value="{{ page_type }}">
+<input type="text" disabled="disabled" id="deduction_id" placeholder="deduction ID" value="{{ id }}">
+<input type="text" id="title" placeholder="deduction Title" value="{{ title }}">
+<input type="text" disabled="disabled" id="author" placeholder="Deduction Author" value="{{ author }}">
+<input type="text" id="description" placeholder="Deduction Short Description" value="{{ description }}">
+<input type="text" id="tags" placeholder="Tags (separate by space)">
+<input type="text" disabled="disabled" placeholder="Date Uploaded" value="{{ date_uploaded }}">
+<input type="text" disabled="disabled" placeholder="Date Last Modified" value="{{ date_last_modified }}">
+
+<div class="files">
+    <b>Static Files:</b> {{ static }}<br>
+    <b>Templates Files:</b> {{ templates }}<br>
+    <b>Scripts Files:</b> {{ scripts }}<br>
+    <b>Extra:</b> {{ extra }}
+</div>
+
+<input type="button" value="Add Deduction" id="add-deduction">
+
+<script>
+
+$(document).ready(function(){
+    $('#add-deduction').click(function(){
+
+        var data = {
+            'title': $('#title').val(),
+            'description': $('#description').val(),
+            'tags': $('#tags').val(),
+            'request-type': 'add-deduction'
+        };
+
+        $.ajax({
+            type: 'GET',
+            url: '/site-admin/add-deduction/',
+            data: data,
+            success: function(data){
+                console.log(data);
+                $('.input-details').html(data.html);
+            }
+        });
+
+    });
+});
+
+</script>

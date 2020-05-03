@@ -1,0 +1,44 @@
+.footer-div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    font-family: GoogleSans;
+    background: white;
+    line-height: 30px;
+}
+
+.footer-div * {
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(50, 50, 80);
+}
+
+.footer-div .msg-div .msg-text span:first-child {
+    font-size: 25px;
+    font-family: GoogleSansB;
+}
+
+.footer-div .msg-div .msg-text span:last-child {
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.footer-div .bug-report  {
+    margin-top: 5px;
+    padding: 0px 10px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(50, 50, 80, 0.3);
+    border-bottom: 3px solid rgb(50, 50, 80);
+    text-decoration: none;
+    display: block;
+}
+
+.footer-div .bug-report span:last-child {
+    font-size: 14px;
+    margin-left: 5px;
+}

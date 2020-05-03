@@ -1,0 +1,78 @@
+.main-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.deducted-page {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.deducted-page .info-div {
+    width: 100%;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.deducted-page .info-div > * {
+    max-width: 900px;
+    margin: auto;
+}
+
+.deducted-page .info-div .title {
+    margin: auto;
+    padding: 20px;
+}
+
+.deducted-page .info-div .title-text {
+    padding-left: 20px;
+    font-size: 40px;
+    text-align: center;
+    font-family: GoogleSans;
+    padding: 20px;
+}
+
+.deducted-page .info-div .description {
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: GoogleSans;
+    border-radius: 10px;
+}
+
+.deducted-page .info-div .info-1 span {
+    padding: 2px 8px;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.deducted-page .info-div .info-1 a {
+    text-decoration: none;
+    color: rgb(50, 50, 80);
+}
+
+.deducted-page .info-div .info-2 span {
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 14px;
+    margin-left: 5px;
+    box-shadow: 0 0 4px rgba(50, 50, 80, 0.2);
+    border-bottom: 3px solid rgb(50, 50, 80);
+}
+
+.deducted-page .info-div .info-2 i {
+    transform: translate(0, 5px);
+}
+
+.deducted-page .info-div i {
+    margin-right: 5px;
+}
+
+.deducted-page .deduction-content {
+    text-align: left;
+}

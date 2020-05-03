@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    /* line-height: 30px; */
+    transition: all 0.5s ease-in-out;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    font-family: Roboto;
+    flex-direction: column;
+    position: relative;
+    background: rgb(250, 250, 250);
+}
+
+.main-body {
+    margin-top: 50px;
+    margin-bottom: 200px;
+    font-size: 18px;
+}

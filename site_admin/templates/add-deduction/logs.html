@@ -1,0 +1,48 @@
+<div class="logs-div">
+    {% for log in logs %}
+
+        {% if log.0 == 's' %}
+            <div class="success">
+                <b>S:</b> {{ log.1 }}
+            </div>
+        {% elif log.0 == 'e' %}
+            <div class="error">
+                <b>E:</b> {{ log.1 }}
+            </div>
+        {% endif %}
+        
+    {% endfor %}
+</div>
+
+<style>
+
+.logs-div {
+    padding-bottom: 50px;
+}
+
+.success {
+    background: rgba(0, 255, 0, 0.2);
+    color: rgb(0, 50, 0);
+    padding: 3px 10px;
+    margin-top: 20px;
+    border-radius: 3px;
+    border-bottom: 3px solid rgb(0, 50, 0);
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.success:first-child {
+    margin-top: 0;
+}
+
+.error {
+    background: rgba(255, 0, 0, 0.2);
+    color: rgb(50, 0, 0);
+    padding: 3px 10px;
+    margin-top: 20px;
+    border-radius: 3px;
+    border-bottom: 3px solid rgb(50, 0, 0);
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    font-family: 'Courier New', Courier, monospace;
+}
+</style>

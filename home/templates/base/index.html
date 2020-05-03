@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+    <head>
+
+        {% block head_title %}
+            <title> Deduction | Homepage | Blog by Ankit Kumar Verma </title>
+        {% endblock %}
+
+        {% block head_description %}
+            <meta name="description" content="Going through something throughly is not possible everytime, so here, Get the DEDUCTED form. I have shared some useful things that may be helpful for you. So get into it, you are welcome.">
+        {% endblock %}
+        
+        {% block head_keywords %}
+            <meta charset="UTF-8"><meta name="keywords" content="Deduction, Blog, Tech Blog, Technology, CSE, Computer, PC, Programming, Coding, Developing, C, C++, Python">
+        {% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Ankit Kumar Verma">
+        <meta name="theme-color" content="rgb(255, 255, 255)" />
+
+        <link rel="shortcut icon" type="image/png" href="{% static 'base/images/favicon.ico' %}"/>
+        
+        <script src="{% static 'base/jquery.js' %}"></script>
+        <script src="{% static 'base/CDNjquery.js' %}"></script>
+        <script src="https://kit.fontawesome.com/3e6d2d4d16.js" crossorigin="anonymous"></script>     
+
+        <link rel="stylesheet" type="text/css" href="{% static 'base/css.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'base/top-bar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'base/footer.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'base/fonts.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'base/animations.css' %}">
+
+        {% block head %}
+        {% endblock %}
+
+    </head>
+
+    <body>
+
+        <div class="top-bar-div">
+            <a class="logo-div" href="/">
+                <div class="logo">
+                    <img src="{% static 'base/images/logo.png' %}">
+                </div>
+                <div class="title-text">
+                    Deduction
+                </div>
+            </a>
+            <div class="top-bar-page-title">
+                {% block top-bar-page-title %}
+                {% endblock %}
+            </div>
+            <div class="social-pf-div">
+                <a href="https://akverma26.github.io/" target="_blank" title="My Portfolio">
+                    <i class='fas fa-globe'></i>
+                </a>
+                <a href="https://github.com/akverma26/" target="_blank" title="My GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/akverma26/" target="_blank" title="My Linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="main-body">
+            {% block main-body %}
+            {% endblock %}
+        </div>
+
+        {% include 'base/footer.html' %}
+
+    </body>
+
+</html>
