@@ -1,0 +1,5 @@
+>>> Take Care of Database
+>>> Remove git uncommited and then git pull
+>>> in views.py in site_admin and deducted: Change PARENT_DIR and PRE_DIR
+>>> in settings.py: set STATIC_URL = '/home/.../static/', DEBUG = False, ALLOWED_HOSTS = ['https://deductions.pythonanywhere.com']
+>>> Reload Website

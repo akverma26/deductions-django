@@ -11,9 +11,6 @@
 
 <div class="deductions-div">
 
-{% include 'home/fresh.html' %}
-{% include 'home/updated.html' %}
-
 {% for deduction in deductions %}
 <a class="deduction" href="/deducted/{{deduction.title}}-{{deduction.id}}">
     <div class="title">

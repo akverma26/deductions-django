@@ -17,6 +17,9 @@ IST = pytz.timezone('Asia/Kolkata')
 PARENT_DIR = ''
 PRE_DIR = 'deducted/'
 
+# PARENT_DIR = '/home/deductions/Deductions/'
+# PRE_DIR = ''
+
 # Create your views here.
 def site_admin(request):
     return render(request, 'site-admin/index.html')
