@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -25,7 +24,10 @@ SECRET_KEY = 'qzlpxs(k35l(ih-rbpa)ddz8d9q)qvj6ep36oh+e+q5z!4%e)q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# STATIC_ROOT = '/home/deductions/Deductions/static'
+
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['deductions.pythonanywhere.com']
 
 
 # Application definition

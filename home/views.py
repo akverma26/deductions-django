@@ -8,8 +8,8 @@ import json
 
 # Create your views here.
 def home(request):
-    deductions = Deducted.objects.all()
-    fresh = deductions.order_by('-date_uploaded')[0]
+    deductions = Deducted.objects.all().order_by('-date_uploaded')
+    fresh = deductions[0]
     latest_modified = deductions.order_by('-date_last_modified')[0]
     context = {
         'fresh': fresh,

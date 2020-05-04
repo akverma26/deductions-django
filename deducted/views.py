@@ -8,6 +8,9 @@ import json
 PARENT_DIR = ''
 PRE_DIR = 'deducted/'
 
+# PARENT_DIR = '/home/deductions/Deductions/'
+# PRE_DIR = ''
+
 # Create your views here.
 def deducted(request, deduction_id):
     deduction = Deducted.objects.get(id=deduction_id[-14:])
