@@ -1,0 +1,155 @@
+<div class="step-div">
+    <div class="step-title-div">
+        <div class="step-title">
+            <div class="step-title-text">
+                Start Django project
+            </div>
+        </div>
+        <div class="title-info-button-div">
+            <div class="title-info-button">
+                i
+            </div>
+        </div>
+    </div>
+
+    <div class="step-description-div">
+        <div class="step-description">
+
+            <div class="code-info-div">
+                <div class="code-div">
+                    <pre class="language-python bright">
+                        <code>django-admin startproject [project_name]</code>
+                    </pre>
+                    <div class="code-info-button-div">
+                        <div class="code-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+                <div class="code-description-div">
+                    <div class="code-description">
+                        <div class="short-info">
+                            This command will create a folder named <b>[project_name]</b> in your current directory and auto-generate some configuration files that are neccessary for
+                            implementing a django project.
+                        </div>
+
+                        <div>
+                            This command will create something like this:
+                            <pre class="language-python code-block-div">
+                                <code>
+                                    -[project_name]/
+                                        manage.py
+                                        |-[project_name]/
+                                            |-settings.py
+                                            |-urls.py
+                                            |-wsgi.py
+                                </code>
+                            </pre>
+
+                        </div>
+
+                        <div class="step-div example">
+                        
+                            <div class="step-title-div">
+                                <div class="step-title">
+                                    <div class="step-title-text">
+                                        Example
+                                    </div>
+                                </div>
+                                <div class="title-info-button-div">
+                                    <div class="title-info-button">
+                                        i
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="step-description-div">
+                                <div class="step-description">
+                        
+                                    Let we are going to start a project named <b>MyProject</b>, so first go to the directory where you would like to store your code/project and then run the following
+                                    command in the same directory to create a folder named <b>MyProject</b> containing all neccessary configuration files.
+                                    <b>django-admin startproject MyProject</b>
+                                    
+                                    The file structure will be like this:
+
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            -MyProject/
+                                                manage.py
+                                                |-MyProject/
+                                                    |-settings.py
+                                                    |-urls.py
+                                                    |-wsgi.py
+                                        </code>
+                                    </pre>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                        <div>
+                            <b>NOTE:</b> Never misplace the configuration files.
+                        </div>
+                        
+                        <div>
+                            <b class="src">MORE: <a href="https://docs.djangoproject.com/en/3.0/intro/tutorial01/#creating-a-project">https://docs.djangoproject.com/en/3.0/intro/tutorial01/#creating-a-project</a></b>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-info-div">
+                <div class="code-div">
+                    <pre class="language-python bright">
+                        <code>python manage.py runserver</code>
+                    </pre>
+                    <div class="code-info-button-div">
+                        <div class="code-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+                <div class="code-description-div">
+                    <div class="code-description">
+                        <div class="short-info">
+                            This command is to start Django server at localhost, where you can see your Django website. Always run this command in the directory where <b>manage.py</b> file is contained.
+                            Don't worry you don't need to restart your django server everytime when you make a small change in your code. You can make changes in your code while your server is live and just save your
+                            changes and reload your page in your browser, just it. It will be explicitly mentioned whenever Django server will need to be restarted.
+                        </div>
+                        
+                        To verify your Django project works run this command in the directory where <b>manage.py</b> file is contained. You will see the following output on the command line:
+                        <pre class="language-python code-block-div">
+                            <code>
+                                $ python manage.py runserver
+
+                                Watching for file changes with StatReloader
+                                Performing system checks...
+                                
+                                System check identified no issues (0 silenced).
+
+                                You have unapplied migrations; your app may not work properly until they are applied.
+                                Run 'python manage.py migrate' to apply them.
+
+                                April 24, 2020 - 05:49:49
+                                Django version 3.0.5, using settings 'ProjectName.settings'
+                                Starting development server at http://127.0.0.1:8000/
+                                Quit the server with CONTROL-C.
+                            </code>
+                        </pre>
+                        Ignore the warnings at this time, we will take care of all these later.
+                        <div>
+                            Now it means server is running, then visit <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> with your broswer to make sure everything gone well. You'll see a "Congratulations!" page, with a rocket
+                            taking off. Wow, It worked. Now you are ready to take on next step.
+                        </div>
+                        <div>
+                            <b class="src">More: <a href="https://docs.djangoproject.com/en/3.0/intro/tutorial01/#the-development-server">https://docs.djangoproject.com/en/3.0/intro/tutorial01/#the-development-server</a></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

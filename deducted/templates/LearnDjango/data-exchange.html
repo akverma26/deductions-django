@@ -1,0 +1,161 @@
+<div class="step-div">
+
+    <div class="step-title-div">
+        <div class="step-title">
+            <div class="step-title-text">
+                Exchange Data between Django and HTML templates
+            </div>
+        </div>
+        <div class="title-info-button-div">
+            <div class="title-info-button">
+                i
+            </div>
+        </div>
+    </div>
+
+    <div class="step-description-div">
+        <div class="step-description">
+            
+            <div class="not-imp">
+                <b>Why?</b>
+                Sometimes It is quite neccessary to exchange data between Django and HTML templates, for example consider a
+                scenario that you have programmed some function in python that takes some input and then do some processing
+                and return some output. Now you want to take that input from user through your HTML page and then provide
+                it to your python-function and at last you want to display that output in your HTML page to your user. But it
+                is not possible without exchanging data between Django and your HTML template.
+                <br>
+                So let's learn how to do that.
+            </div>
+
+            <div class="step-div">
+
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            From Django to HTML
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+                        
+                        <div>
+                            In previous section we used <b>render()</b> method to return our custom HTML template, that takes a dictionary as its optional
+                            third argument, that is named as <b>context</b>. This is the argument that is used to pass our data in our HTML template.
+
+                            <div class="short-info">
+                                Always remember from Django to HTML template, Data is passed as dictionary i.e. <b>context</b> argument expects a dictionary.
+                            </div>
+                        </div>
+
+                        <div>
+                            Now, in order to use the context data, in HTML template <b>code section</b> is used, that is similiar to <b>Jinja2</b>.
+                            A code section in HTML template is surrounded like <b>&#123;% code_section %}</b> and a variable is surrounded like <b>&#123;{ variable }}</b>.
+
+                            <div class="short-info">
+                                Please note that in template language, keys of the dictionary provided as context argument to the <b>render()</b> method are used as variable.
+                            </div>
+
+                            <b class="src">For more: <a href="https://docs.djangoproject.com/en/3.0/ref/templates/language/">https://docs.djangoproject.com/en/3.0/ref/templates/language/</a></b>
+                        </div>
+
+                        <div class="step-div example">
+                        
+                            <div class="step-title-div">
+                                <div class="step-title">
+                                    <div class="step-title-text">
+                                        Example
+                                    </div>
+                                </div>
+                                <div class="title-info-button-div">
+                                    <div class="title-info-button">
+                                        i
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="step-description-div">
+                                <div class="step-description">
+                                    Let consider an example, we want to pass some bio-data to our HTML template, then our <b>views.py</b> file will look like this:
+            
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            ...
+                                            context = {
+                                                'name': 'Ankit Kumar',
+                                                'dob': '4/04/404',
+                                                'languages': ['Hindi', 'English'],
+                                                ...
+                                            }
+                                            ...
+                                            return render(request, 'index.html', context)
+                                        </code>
+                                    </pre>
+
+                                    Now to show this bio-data put the following code in your HTML template:
+
+                                    <pre class="language-html code-block-div">
+                                        <code>
+                                            ...
+                                            &lt;div>
+                                                Name: &#123;{ name }}
+                                                Date of Birth: &#123;{ dob }}
+                                                Known Languages : &#123;% for language in languages %} &#123;{ language }} &#123;% endfor %}
+                                            &lt;/div>
+                                            ...
+                                        </code>
+
+                                    </pre>
+
+                                    <div>
+                                        <b>Please note</b> that here <i>name</i>, <i>dob</i>, <i>languages</i> are the keys of the context dictionary, so these keys are used as variable
+                                        in our template code section and variables are surrounded by <b>&#123;{ }}</b> like &#123;{ name }}, &#123;{ dob }} and &#123;{ language }}.
+                                        <br>
+                                        As you can see above <i>languages</i> variable is not surrounded by &#123;{ }}, because the entire code section of <i>for loop</i> is separately
+                                        defined by <b>&#123;% %}</b>, hence in these brackets variables are used without brackets but note that the local variable <i>language</i>, that is
+                                        inside the <i>for loop</i>, is surrounded by <b>&#123;{ }}</b>, to get it's value.
+                                    </div>
+            
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="step-div">
+
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            From Template to Django
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+                        [will be updated soon!]
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+
+</div>

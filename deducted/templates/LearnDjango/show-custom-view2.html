@@ -1,0 +1,393 @@
+<div class="step-div">
+
+    <div class="step-title-div">
+        <div class="step-title">
+            <div class="step-title-text">
+                Show Custom View using Templates and Static Files
+            </div>
+        </div>
+        <div class="title-info-button-div">
+            <div class="title-info-button">
+                i
+            </div>
+        </div>
+    </div>
+
+    <div class="step-description-div">
+        <div class="step-description">
+            
+            <div class="short-info">
+                In Django, HTML files are considered as <b>templates</b> and all other dependency files (like CSS, javascript etc.) are considered as
+                <b>static files</b>
+            </div>
+
+            <div>
+                Till the previous section you just can return some HTML-content using <b>return HttpResponse()</b>, now you will learn how to
+                show an HTML file as Django view.
+            </div>
+
+            <div>
+                In order to show an HTML file as Django view you just have to follow 3 following steps.
+                <br>1. Register/Configure your App in <b>INSTALLED_APPS</b>
+                <br>2. Manage Templates and Static files
+                <br>3. Use <b>render()</b> to show your template
+            </div>
+
+            <div class="step-div">
+            
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            1. Configure your App in <b>INSTALLED_APPS</b>
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                        <div>
+                            First step is to configure your app. In order to do that first open the <b>apps.py</b> file in your app directory, you will see a class
+                            that is inherited from the class <b>AppConfig</b>. (Just pay attention to the name of the Inherited class (subclass) that is like <b>[app_name]Config</b>).
+                            Now to complete the configuration just put the dotted path to that subclass (<b>'[app_directory].apps.[app_name]Config'</b>) in <b>INSTALLED_APPS</b> list in
+                            <b>settings.py</b> file.
+                        </div>
+
+                        <div class="step-div example">
+                        
+                            <div class="step-title-div">
+                                <div class="step-title">
+                                    <div class="step-title-text">
+                                        Example
+                                    </div>
+                                </div>
+                                <div class="title-info-button-div">
+                                    <div class="title-info-button">
+                                        i
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="step-description-div">
+                                <div class="step-description">
+
+                                    <div class="short-info">
+                                            Example:<br>
+                                            #till_now:<br>
+                                            Project Name: MyProject<br>
+                                            App Name: Home
+                                    </div>
+                    
+                                    Let consider our example, to register our app, first let's open the <b>apps.py</b> file in our app directory (i.e. Home directory).
+                                    This file looks like this:
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            from django.apps import AppConfig
+                    
+                                            class HomeConfig(AppConfig):
+                                                name = 'Home'
+                                        </code>
+                                    </pre>
+
+                                    As you can see, here subclass is <b>HomeConfig</b>, and path to this subclass is <b>Home.apps.HomeConfig</b>, so now what are you waiting for, just
+                                    put the path in the <b>INSTALLED_APPS</b> in <b>settings.py</b> file. Now your <b>settings.py</b> file will be like this:
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            ...
+                                            INSTALLED_APPS = [
+                                                'Home.apps.HomeConfig',
+                                                'django.contrib.admin',
+                                                'django.contrib.auth',
+                                                'django.contrib.contenttypes',
+                                                'django.contrib.sessions',
+                                                'django.contrib.messages',
+                                                'django.contrib.staticfiles',
+                                                'Home.apps.HomeConfig',                 # <<<====== this is the new entry
+                                            ]
+                                            ...
+                                        </code>
+                                    </pre>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="step-div">
+
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            2. Manage Templates and Static files
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                        Second step is to manage your HTML, CSS, JavaScript and other dependency files.
+                        For that create two folder named <b>templates</b> and <b>static</b> in your app directory and place all your HTML files (i.e. templates) in
+                        <b>templates</b> directory and all dependency files (like CSS, JavaScript etc.) in <b>static</b> folder.
+                        Now you file structure will be like this:
+        
+                        <pre class="language-python code-block-div">
+                            <code>
+                                |- [app_name]/
+                                    |- admin.py
+                                    |- apps.py
+                                    |- migrations/
+                                    |- models.py
+                                    |- templates/
+                                        |- [directory]/
+                                            |- [file]
+                                    |- tests.py
+                                    |- static/
+                                        |- [directory]/
+                                            |- [file]
+                                    |- views.py
+                            </code>
+                        </pre>
+
+                        <div>
+                            Yes you can create as many directories as you want for your convenience.
+                        </div>
+
+                        <div>
+                            Please note that as Django always look for your HTML and static files in <b>templates</b> and <b>static</b> folder respectively,
+                            therefore folder name (<b>templates</b> and <b>static</b>) must be same as mentioned above.
+                        </div>
+
+                        <div>
+                            Now since <b>static</b> files have been placed separately from corrosponding HTML files, so in Django, these static files are linked
+                            in HTML files in the following way:
+
+                            <div class="code-info-div">
+                
+                                <div class="code-div">
+                                    <pre class="language-html bright">
+                                        <code>
+                                            {% verbatim %}
+                                                {% load static %}
+                                            {% endverbatim %}
+                                        </code>
+                                    </pre>
+                                    <div class="code-info-button-div">
+                                        <div class="code-info-button">
+                                            i
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="code-description-div">
+                                    <div class="code-description">
+                                        Include this one line in your template file before linking any static file.
+                                    </div>
+                                </div>
+                
+                            </div>
+
+
+
+                            <div class="code-info-div">
+
+                                <div class="code-div">
+                                    <pre class="language-html bright">
+                                        <code>
+                                            {% verbatim %}
+                                            &lt;!-- Link css file -->
+                                            &lt;link rel="stylesheet" type="text/css" href="{% static 'css.css' %}">
+                    
+                                            &lt;!-- Link JavaScript file -->
+                                            &lt;script src="{% static 'js.js' %}">&lt;/script>
+                                            {% endverbatim %}
+                                        </code>
+                                    </pre>
+                                    <div class="code-info-button-div">
+                                        <div class="code-info-button">
+                                            i
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="code-description-div">
+                                    <div class="code-description">
+                                        Now you are ready to link your static file and you can do the same in this way.
+                                        <br>
+                                        <b>NOTE:</b> Note that tha path of the static file is given with respect to the <b>static</b> directory. In this code it is supposed that
+                                        <b>css.css</b> and <b>js.js</b> file are placed in <b>static</b> folder itself. If the <b>css.css</b> and <b>js.js</b> file had been placed in
+                                        <b>Dir</b> subdirectory in <b>static</b> directory, then these files would be link to the template in the following way:
+
+                                        <pre class="language-html code-block-div">
+                                            <code>
+                                                {% verbatim %}
+                                                &lt;!-- Link css file -->
+                                                &lt;link rel="stylesheet" type="text/css" href="{% static 'Dir/css.css' %}">
+                        
+                                                &lt;!-- Link JavaScript file -->
+                                                &lt;script src="{% static 'Dir/js.js' %}">&lt;/script>
+                                                {% endverbatim %}
+                                            </code>
+                                        </pre>
+
+                                    </div>
+                                </div>
+                
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="step-div">
+            
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            3. Use <b>render()</b> to show your template
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                        <div>
+                            Now it's time to show your custom view that you have defined as your HTML file. And to do the same
+                            use method <b>django.shortcuts.render</b> to return your template as Django view.
+                            <br>
+                            <b>render()</b> function takes the request object as its first argument, a template name as its
+                            second argument and a dictionary as its optional third argument.
+                            <br>
+                            <b>NOTE:</b> Please note that template name is given as string path with respect to <b>templates</b>
+                            directory and the third optional argument is to pass some neccessary data to be used in the template.
+                            You will learn about all these things later on.
+                            <br>
+                            <b class="src">MORE: <a href="https://docs.djangoproject.com/en/3.0/intro/tutorial03/#a-shortcut-render">https://docs.djangoproject.com/en/3.0/intro/tutorial03/#a-shortcut-render</a></b>
+                        </div>
+
+                        <div class="step-div example">
+                        
+                            <div class="step-title-div">
+                                <div class="step-title">
+                                    <div class="step-title-text">
+                                        Example
+                                    </div>
+                                </div>
+                                <div class="title-info-button-div">
+                                    <div class="title-info-button">
+                                        i
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="step-description-div">
+                                <div class="step-description">
+
+                                    <div class="short-info">
+                                        Example:<br>
+                                        #till_now:<br>
+                                        Project Name: MyProject<br>
+                                        App Name: Home
+                                    </div>
+
+                                    Let our HTML file is <b>home.html</b> that is placed in the <b>Home</b> directory in <b>templates</b> directory
+                                    and all dependency files <b>css.css</b> and <b>js.js</b> file placed in the <b>Home</b> directory in <b>static</b>
+                                    directory. Now our project directory looks like this:
+
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            -MyProject/
+                                                |- Home/
+                                                    |- admin.py
+                                                    |- apps.py
+                                                    |- migrations/
+                                                    |- models.py
+                                                    |- templates/
+                                                        |- Home/
+                                                            |- home.html
+                                                    |- tests.py
+                                                    |- static/
+                                                        |- Home/
+                                                            |- css.css
+                                                            |- js.js
+                                                    |- views.py
+                                                manage.py
+                                                |-MyProject/
+                                                    |-settings.py
+                                                    |-urls.py
+                                                    |-asgi.py
+                                                    |-wsgi.py
+                                        </code>
+                                    </pre>
+
+                                    Now to render our template <b>home.html</b> just put the following code in the <b>views.py</b> file:
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            ...
+                                            from django.shortcuts import render
+                                            ...
+                                            def index(request):
+                                                ...
+                                                return render(request, 'Home/home.html')
+                                            ...
+                                        </code>
+                                    </pre>
+
+                                    <div>
+                                        Please note that we have used the path of the template for the second argument in the <b>render()</b> function and this path
+                                        is given with respect to the <b>templates</b> directory. Even if you want to render the template from another
+                                        app you just have to pass the path with respect to the <b>templates</b> directory. Therefore it is always recommended
+                                        that put your template and static files in the subdirectory in the <b>templates</b> directory. 
+                                        <br>
+                                        Why it is recommended, Let understand the following scenario:
+                                        <br>
+                                        Suppose you have two apps named 'Home' and 'Contact', and for both the apps you have defined templates
+                                        and both templates are named same say 'index.html' and you put them directly in the 'templates' directory like this:
+                                        'Home/templates/index.html' and 'Contact/templates/index.html'. Now If you render the first template, second template
+                                        may render or it may be the vice-versa. Why this is so? Because Django looks for all the templates directory across the project
+                                        and path is given with respect to the 'templates' directory, so for both templates, path will be same i.e. 'index.html'.
+                                        To prevent this conflict, It is always recommended to put the template files in the subdirectory in 'templates' directory.
+                                        Now If 'Home-template' and 'Contact-template' had been placed as 'Home/templates/Home/index.html' and 'Home/templates/Contact/index.html'
+                                        respectively, then the path would be 'Home/index.html' and 'Contact/index.html' and then there wouldn't be any conflict.
+                                    </div>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>

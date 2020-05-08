@@ -1,0 +1,240 @@
+<div class="step-div">
+
+        <div class="step-title-div">
+            <div class="step-title">
+                <div class="step-title-text">
+                    Show Custom View
+                </div>
+            </div>
+            <div class="title-info-button-div">
+                <div class="title-info-button">
+                    i
+                </div>
+            </div>
+        </div>
+    
+        <div class="step-description-div">
+            <div class="step-description">
+
+                <div class="short-info">
+                    To show a Custom Page always you have to do two things.
+                    1. Define your custom view in <b>views.py</b> file.
+                    2. To call the view, map it to a URL <b>(URLconf)</b>.
+                </div>
+
+                <div class="step-div">
+
+                    <div class="step-title-div">
+                        <div class="step-title">
+                            <div class="step-title-text">
+                                1. Define Custom View
+                            </div>
+                        </div>
+                        <div class="title-info-button-div">
+                            <div class="title-info-button">
+                                i
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="step-description-div">
+                        <div class="step-description">
+
+                                <div class="code-info-div">
+
+                                    <div class="code-div">
+                                        <pre class="language-python bright">
+                                            <code>
+                                                from django.http import HttpResponse
+
+                                                def home(request):
+                                                    return HttpResponse("Hello, world. You're at Home.")
+                                            </code>
+                                        </pre>
+                                        <div class="code-info-button-div">
+                                            <div class="code-info-button">
+                                                i
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="code-description-div">
+
+                                        <div class="code-description">
+                                            This is the simplest view to render some simple html-content. Write the above
+                                            code to file <b>Home/views.py</b> and save that to render some simple html-content.
+                                            
+                                            <div>
+                                                <b>NOTE:</b> Note that a view in django always returned by a method, in this case <b>HttpResponse</b>
+                                                is return by <b>home</b> method.
+                                            </div>
+                                            
+                                            Now to render/show this in your browser this method <b>home</b> need to map to a URL. for this see the next step.
+
+                                        </div>
+                                    </div>
+                    
+                                </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="step-div">
+                
+                    <div class="step-title-div">
+                        <div class="step-title">
+                            <div class="step-title-text">
+                                2. Map a view method to a URL
+                            </div>
+                        </div>
+                        <div class="title-info-button-div">
+                            <div class="title-info-button">
+                                i
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="step-description-div">
+                        <div class="step-description">
+
+                            <div class="short-info">
+                                All these URL-mapping stuff is done according to all <b>urls.py</b> files. (also called URLconf). All apps must have URLconf.
+                                Ofcourse, to create a URLconf in any app directory, you just have to create a file called <b>urls.py</b>
+                            </div>
+
+                            <div class="step-div">
+                            
+                                <div class="step-title-div">
+                                    <div class="step-title">
+                                        <div class="step-title-text">
+                                            Understand URL-Mappin Concept
+                                        </div>
+                                    </div>
+                                    <div class="title-info-button-div">
+                                        <div class="title-info-button">
+                                            i
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="step-description-div">
+                                    <div class="step-description">
+
+                                        Let understand the URL mapping by the example.
+
+                                        <div class="short-info">
+                                            #till_now<br>
+                                            Project Name: MyProject<br>
+                                            App Name: Home
+                                        </div>
+
+                                        <div>
+
+                                            First of all to create URLconf in your app directory, create a file called <b>urls.py</b>, Now your app directory should look like this:
+                                            <pre class="language-python code-block-div">
+                                                <code>
+                                                    - Home/
+                                                        |- admin.py
+                                                        |- apps.py
+                                                        |- models.py
+                                                        |- tests.py
+                                                        |- urls.py
+                                                        |- views.py                                                        
+                                                </code>
+                                            </pre>
+
+                                            Now put the following code in <b>Home/urls.py</b> file
+                                            <pre class="language-python code-block-div">
+                                                <code>
+                                                    from django.urls import path
+
+                                                    from . import views
+                                                    
+                                                    urlpatterns = [
+                                                        path('', views.home),
+                                                    ]
+                                                </code>
+                                            </pre>
+
+                                            The next step is that the root URLconf (i.e. <b>MyProject/urls.py</b>) should point at the <b>Home/urls.py</b> module. To do that in URLconf
+                                            add an import for <b>django.urls.include</b> and then insert a new entry in the <b>urlpatterns</b> list using <b>include()</b>.
+                                            So now you will have:
+                                            <pre class="language-python code-block-div">
+                                                <code>
+                                                    from django.contrib import admin
+                                                    from django.urls import path, include
+                                                    
+                                                    urlpatterns = [
+                                                        path('admin/', admin.site.urls),
+                                                        path('home/', include('home.urls')),
+                                                    ]
+                                                </code>
+                                            </pre>
+                                            <b>include()</b> function allows referencing other URLconfs i.e. <b>urls.py</b> files. Whenever Django encounters <b>include()</b>,
+                                            it chops off whatever part of the URL matched up to that point and sends the remaining string to the included URLconf i.e. <b>urls.py</b>
+                                            file for further procesing.
+
+                                            In our example when we visit <b>http://127.0.0.0/home/</b>, then while processing our request, Django starts to match the URL
+                                            with the first pattern in <b>urlpatterns</b> list in root URLconf i.e. <b>MyProject/urls.py</b> until it finds that one complete perfect match.
+                                            In our example, it finds the match http://127.0.0.0/<b>home/</b> against the second pattern in <b>urlpatterns</b> in root URLconf,
+                                            then it chops off the matched pattern i.e. <b>home/</b> and send the remaining string i.e. <b>[empty string]</b> to <b>home.urls</b>, now
+                                            it finds its perfect match with the only pattern in <b>patternlist</b> list in <b>Home/urls.py</b> and it calls the specified view function
+                                            <b>Home.views.home()</b> that returns our custom view that is a simple html-content in our example.
+
+                                            You can make a better understanding about URL-mapping by considering following two cases:
+
+                                            <h3>Case 1:</h3>
+                                            If you want to show the same view at <b>http://127.0.0.0/home/index</b>, you just have to replace <b>[empty string]</b> in <b>Home/urls.py</b>
+                                            with <b>index/</b>. Now <b>Home/urls.py</b> file look like this:
+                                            <pre class="language-python code-block-div">
+                                                <code>
+                                                    from django.urls import path
+
+                                                    from . import views
+                                                    
+                                                    urlpatterns = [
+                                                        path('index/', views.home),
+                                                    ]
+                                                </code>
+                                            </pre>
+
+                                            <h3>Case 2:</h3>
+                                            If you want to show the same view at <b>http://127.0.0.0</b>, you just have to replace <b>home/</b> in root URLconf i.e. <b>MyProject/urls.py</b>
+                                            with <b>[empty string]</b>. Now <b>MyProject/urls.py</b> file look like this: (Don't make Any change in <b>Home/urls.py</b> file. i.e. don't consider <b>Case 1</b>.)
+                                            <pre class="language-python code-block-div">
+                                                <code>
+                                                    from django.contrib import admin
+                                                    from django.urls import path, include
+                                                    
+                                                    urlpatterns = [
+                                                        path('admin/', admin.site.urls),
+                                                        path('', include('home.urls')),
+                                                    ]
+                                                </code>
+                                            </pre>
+                                            <b>NOTE:</b> path() function takes 4 arguments, two required: <b>route</b> and <b>view</b>. <b>route</b> is a string that contains a URL pattern.
+                                            <b>And always use a '/' [back-slash] after the pattern string [as route argument], if it is not an empty string,</b> because a URL like
+                                            <b>home</b> and <b>home/</b> both match against pattern string <b>home/</b>, but not against <b>home</b>. It means if you have a pattern like
+                                            <b>home</b> then the specified view only can be seen at <b>https://.../home</b>, but not at <b>https://.../home/</b> [P.S. note that difference of back-slash i.e. '/'],
+                                            but in case if you have a pattern like <b>home/</b> then the specified view can be seen at both.
+                                            <br>
+                                            <b class="src">MORE: <a href="https://docs.djangoproject.com/en/3.0/intro/tutorial01/#path-argument-route">https://docs.djangoproject.com/en/3.0/intro/tutorial01/#path-argument-route</a></b>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+    
+            </div>
+        </div>
+    
+</div>

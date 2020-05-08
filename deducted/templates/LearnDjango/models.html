@@ -1,0 +1,310 @@
+<div class="step-div">
+
+    <div class="step-title-div">
+        <div class="step-title">
+            <div class="step-title-text">
+                Setup Database using Django Models
+            </div>
+        </div>
+        <div class="title-info-button-div">
+            <div class="title-info-button">
+                i
+            </div>
+        </div>
+    </div>
+
+    <div class="step-description-div">
+        <div class="step-description">
+            
+            There are several ways to create your database in python and ofcourse you can use any of them for your convenience.
+            But here I would like to give you an Idea about how Django models works.
+
+            <br>
+            <b>NOTE:</b> I suppose you are familiar with SQL or any other relational Database.
+            
+            <div class="short-info">
+                For the sake of understanding <b>models can be considered as tables</b>. In django, models are classes that is
+                inherited from <b>django.db.models.Model</b>, in which data attributes (columns) are defined as class variables
+                that are called fields. These fields can be of different types according to what type of data you want to store
+                in your attributes like these fields can be <b>CharField</b>, <b>IntegerField</b>, <b>DateField</b>, <b>BooleanField</b> and many more.
+                You can explore all different type of fields at
+                <b class="src"><a href="https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types">https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types</a></b>
+            </div>
+
+            <div>
+                So now to create a database you have follow 3 main steps:<br>
+                1. Create Model Classes <br>
+                2. Convert Model classes into actual Tables<br>
+                3. Bring into effect all the changes made by you.
+            </div>
+
+            <div class="step-div">
+
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            1. Create Model Classes
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                        <div>
+                            In order to create your database first you have to create a model with fields in your <b>models.py</b> file in your app
+                            directory i.e. you have to create a class that is inherited from <b>django.db.models.Model</b> with field class variables.
+                        </div>
+
+                        <div class="step-div example">
+                        
+                            <div class="step-title-div">
+                                <div class="step-title">
+                                    <div class="step-title-text">
+                                        Example
+                                    </div>
+                                </div>
+                                <div class="title-info-button-div">
+                                    <div class="title-info-button">
+                                        i
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="step-description-div">
+                                <div class="step-description">
+                                    Let you want to create a database in which we can store some bio-data information about your favorite
+                                    cricketers that includes name, dob, country and lefty or righty. So now you have to create
+                                    a model class in your <b>models.py</b> that will look like this.
+
+                                    <pre class="language-python code-block-div">
+                                        <code>
+                                            from django.db import models
+
+                                            class FavCricketer(models.Model):
+                                                name = models.CharField(max_length=100)
+                                                dob = models.DateField()
+                                                righty = models.BooleanField()
+                                        </code>
+                                    </pre>
+
+                                    Here, to store a "name" you need a <b>CharField</b>, to store "dob" you need a <b>DateField</b> and to store the cricketer is
+                                    right or lefty you can use either <b>CharField</b> to store exact string "righty" or "lefty" or <b>BooleanField</b> to store
+                                    "True" or "False" as mentioned above. Hence the field type is to be decided according to the type of data you want to store.
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="step-div">
+            
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            2. Convert Model classes into actual Tables
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                            <div class="code-info-div">
+                
+                                <div class="code-div">
+                                    <pre class="language-python bright">
+                                        <code>
+                                            python manage.py makemigrations
+                                        </code>
+                                    </pre>
+                                    <div class="code-info-button-div">
+                                        <div class="code-info-button">
+                                            i
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="code-description-div">
+                                    <div class="code-description">
+                                        Since all your databases are in the form of python classes, so in order to convert them into actual tables
+                                        you have to run this command.
+                                    </div>
+                                </div>
+                
+                            </div>
+
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="step-div">
+            
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            3. Bring into effect all the changes made by you.
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+                            <div class="code-info-div">
+                
+                                <div class="code-div">
+                                    <pre class="language-python bright">
+                                        <code>
+                                            python manage.py migrate
+                                        </code>
+                                    </pre>
+                                    <div class="code-info-button-div">
+                                        <div class="code-info-button">
+                                            i
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="code-description-div">
+                                    <div class="code-description">
+                                        Whenever you change the schema of your database, you have to run this command
+                                        to bring into effect all the changes made by you. You don't need to run the <b>makemigrations</b>
+                                        command everytime when you do some changes (like adding or removing a field or changing type of the field)
+                                        in your model class, you have to run <b>makemigrations</b>
+                                        command only when you create a new model class. 
+                                    </div>
+                                </div>
+                
+                            </div>
+
+                    </div>
+                </div>
+            
+            </div>
+
+            <div style="margin-top: 10px;">
+                To learn how to access or manipulate these model database in python programmatically just go through these two pages one by one, everything is
+                explained by an example
+                <br>
+                <b class="src"><a href="https://docs.djangoproject.com/en/3.0/topics/db/queries/">https://docs.djangoproject.com/en/3.0/topics/db/queries/</a></b>
+                <br>
+                <b class="src"><a href="https://docs.djangoproject.com/en/3.0/topics/db/aggregation/">https://docs.djangoproject.com/en/3.0/topics/db/aggregation/</a></b>
+            </div>
+
+            <div class="step-div">
+
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            Extra: Django Admin Page
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                        Did you remember about the warning you see when you run your Django server using <b>python manage.py runserver</b>?
+                        That warning tells you to create some neccessary database tables.
+                        You can get rid of that by just running the following command.
+
+                        <pre class="language-python code-block-div">
+                            <code>
+                                python manage.py migrate
+                            </code>
+                        </pre>
+
+                        <div class="short-info">
+                            This <b>migrate</b> command looks at the <b>INSTALLED_APPS</b> setttings and when you run this command for the first time
+                            it creates some neccessary database tables like <b>admin</b>, <b>auth</b>, <b>sessions</b> etc.
+                        </div>
+                        <div>
+                            Ofcourse you don't need to run this command again when you have created your django models and during that you might have run
+                            this command to apply all the changes that you made to your <b>models.py</b> file in your app directory.
+                        </div>
+
+                        <div class="short-info">
+                            Django provides an admin page (by default at <b>127.0.0.0:8000/admin</b>) from where you can access your database through a webpage.
+                            In order to get access to that admin page you have to create a <b>super-user</b> by running the following command.
+                        </div>
+                        
+                        <pre class="language-python code-block-div">
+                            <code>
+                                python manage.py createsuperuser
+                            </code>
+                        </pre>
+
+                        <b>NOTE:</b> Please note that <b>createsuperuser</b> command will only work after running the <b>migrate</b>
+                        command, because <b>migrate</b> command is the command that creates the database to hold the credentials and
+                        other data about the super user (This data is stored in <b>auth_user</b> table.)
+
+                        If you will visit the admin page you will only be able to access some <b>AUTHENTICATION AND AUTHORIZATION</b> tables
+                        <b>Groups</b> and <b>Users</b>. You will find that there is no such tables that you have created using models. In order
+                        to access your database tables you have to register your model class in <b>admin.py</b> file in your same app directory
+                        in following way:
+
+                        <br>
+                        Suppose your <b>models.py</b> file looks like this:
+
+                        <pre class="language-python code-block-div">
+                            <code>
+                                from django.db import models
+
+                                class Model1(models.Model):
+                                    ...
+
+                                class Model2(models.Model):
+                                    ...
+                            </code>
+                        </pre>
+
+                        So now to access your database tables <b>Model1</b> and <b>Model2</b> from your admin page you have to register these
+                        model classes in <b>admin.py</b> file in the same app directory in the following way:
+
+                        <pre class="language-python code-block-div">
+                            <code>
+                                from django.contrib import admin
+
+                                from .models import Model1, Model2
+                                
+                                admin.site.register([Model1, Model2])
+                            </code>
+                        </pre>
+
+                        Ofcourse you can register as many as database tables you want from different apps across your project.
+
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+
+</div>

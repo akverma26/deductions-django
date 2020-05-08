@@ -1,0 +1,26 @@
+{
+	"title": "Learn Django from scratch [OnGoing]",
+
+	"description": "Django is a Python-based free and open-source web framework, which follows the model-template-view architectural pattern. Just go through this short tutorial to learn all about Django. It will give you an idea, that how Django works and what you can do with Django.",
+
+	"author": "Ankit Kumar Verma",
+
+	"author_profile_link": "https://akverma26.github.io/",
+
+	"page_type": "Independent",
+
+	"static": [
+		"css.css", "js.js"
+	],
+
+	"templates": [
+		"index.html", "install-django.html", "start-project.html", "create-app.html", "show-custom-view.html",
+		"show-custom-view2.html", "format.html"
+	],
+
+	"data": {
+		"script": [],
+
+		"data": {}
+	}
+}
