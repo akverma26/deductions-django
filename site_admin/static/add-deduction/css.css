@@ -28,7 +28,6 @@ input {
 input[type=button] {
     background: rgb(50, 50, 80);
     color: white;
-    margin-bottom: 30px;
     cursor: pointer;
 }
 
@@ -48,4 +47,15 @@ input:first-child {
     padding: 20px;
     border-radius: 5px;
     border-bottom: 5px solid rgb(50, 50, 80);
+}
+
+#refresh-data {
+    background: rgb(0, 180, 0);
+    border: 2px solid rgb(0, 150, 0);
+}
+
+#sure {
+    background: rgb(180, 0, 0);
+    border: 2px solid rgb(150, 0, 0);
+    display: none;
 }

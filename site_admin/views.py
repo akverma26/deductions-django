@@ -156,6 +156,80 @@ def add_deduction(request):
 
     return render(request, 'add-deduction/index.html')
 
+def refresh_fetch_deduction_info(deductions):
+
+    all_manifest = []
+    for deduction in deductions:
+        print('Fetching... ', deduction)
+
+        manifest = deduction.manifest_url
+
+        manifest = requests.get(manifest)
+        manifest = manifest.json()
+
+        static = ', '.join(manifest['static']) if manifest['static'] else 'None'
+        templates = ', '.join(manifest['templates']) if manifest['templates'] else 'None'
+
+        scripts = ', '.join(manifest['data']['script']) if manifest['data']['script'] else 'None'
+        extra = ', '.join(manifest['data']['data']) if manifest['data']['data'] else 'None'
+        
+        all_manifest.append(
+            {
+                'id': deduction.id, 'title': deduction.title, 'manifest_url': deduction.manifest_url,
+                'static': static, 'templates': templates, 'scripts': scripts, 'extra': extra,
+            }
+        )
+    return all_manifest
+
+def refresh_download_files(manifest_url):
+
+    logs = []
+
+    slashes = [i for i, c in enumerate(manifest_url) if c == "/"]
+    folder_name = folder_format( manifest_url[ (slashes[-2]+1):slashes[-1] ] )
+
+    logs.append(['s', 'Directory decided: '+folder_name])
+
+    logs += download_file(manifest_url, 'manifest.json', PARENT_DIR + PRE_DIR +'static/'+folder_name)
+    manifest = requests.get(manifest_url).json()
+
+    static = manifest['static']
+    templates = manifest['templates']
+    scripts = manifest['data']['script']
+    
+    for fl in static:
+        logs += download_file(
+            manifest_url[:-13]+'static/'+fl,
+            fl,
+            PARENT_DIR + PRE_DIR +'static/'+folder_name
+        )
+
+    for fl in templates:
+        logs += download_file(
+            manifest_url[:-13]+'templates/'+fl,
+            fl,
+            PARENT_DIR +'deducted/templates/'+folder_name
+        )
+
+    for fl in scripts:
+        logs += download_file(
+            manifest_url[:-13]+'static/'+fl,
+            fl,
+            PARENT_DIR + PRE_DIR  +'static/'+folder_name
+        )
+
+    print(logs)
+
+    return logs
+
+def refresh_files(request):
+    deductions = Deducted.objects.all()
+    all_manifest = refresh_fetch_deduction_info(deductions)
+    print(all_manifest)
+    for manifest in all_manifest:
+        refresh_download_files(manifest['manifest_url'])
+    return JsonResponse({})
+
 def download_file(url, name, path='temp/'):
     logs = []
     path = folder_format(path)

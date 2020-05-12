@@ -11,4 +11,19 @@ $(document).ready(function(){
         });
     });
 
+    $('#refresh-data').click(function(){
+        $(this).css('visibility', 'hidden');
+        $('#sure').show();
+    });
+
+    $('#sure').click(function(){
+        $.ajax({
+            type: 'GET',
+            url: '/site-admin/refresh-files/',
+            success: function(data){
+                $('.input-details').html(data.html);
+            }
+        });
+    });
+
 });
