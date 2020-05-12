@@ -20,6 +20,8 @@ PRE_DIR = 'deducted/'
 # PARENT_DIR = '/home/deductions/Deductions/'
 # PRE_DIR = ''
 
+track_server_data = {}
+
 # Create your views here.
 def site_admin(request):
     return render(request, 'site-admin/index.html')
@@ -156,7 +158,7 @@ def add_deduction(request):
 
     return render(request, 'add-deduction/index.html')
 
-def refresh_fetch_deduction_info(deductions):
+def refresh_fetch_files(deductions):
 
     all_manifest = []
     for deduction in deductions:
@@ -167,11 +169,11 @@ def refresh_fetch_deduction_info(deductions):
         manifest = requests.get(manifest)
         manifest = manifest.json()
 
-        static = ', '.join(manifest['static']) if manifest['static'] else 'None'
-        templates = ', '.join(manifest['templates']) if manifest['templates'] else 'None'
+        static = manifest['static']
+        templates = manifest['templates']
 
-        scripts = ', '.join(manifest['data']['script']) if manifest['data']['script'] else 'None'
-        extra = ', '.join(manifest['data']['data']) if manifest['data']['data'] else 'None'
+        scripts = manifest['data']['script']
+        extra = manifest['data']['data']
         
         all_manifest.append(
             {
@@ -179,6 +181,8 @@ def refresh_fetch_deduction_info(deductions):
                 'static': static, 'templates': templates, 'scripts': scripts, 'extra': extra,
             }
         )
+    html = loader.render_to_string('add-deduction/refresh-fetched-files.html', {'all_manifest': all_manifest})
+    track_server_data['fetched_files_html'] = html
     return all_manifest
 
 def refresh_download_files(manifest_url):
@@ -223,12 +227,34 @@ def refresh_download_files(manifest_url):
     return logs
 
 def refresh_files(request):
+    track_server_data.clear()
     deductions = Deducted.objects.all()
-    all_manifest = refresh_fetch_deduction_info(deductions)
-    print(all_manifest)
+
+    all_manifest = refresh_fetch_files(deductions)
     for manifest in all_manifest:
-        refresh_download_files(manifest['manifest_url'])
+        logs = refresh_download_files(manifest['manifest_url'])
+
+        failed = False
+        for log in logs:
+            if log[0]=='e':
+                failed = True
+                break
+        if failed:
+            track_server_data['refresh_downloading'][manifest[id]] = 'Failed'
+        else:
+            track_server_data['refresh-_downloading'][manifest[id]] = 'Success'
+
+    track_server_data['finish'] = True
     return JsonResponse({})
+
+def track_server(request):
+    keys = request.GET.getlist('delete-keys[]')
+    for key in keys:
+        try:
+            del track_server_data[key]
+        except:
+            pass
+    return JsonResponse(track_server_data)
 
 def download_file(url, name, path='temp/'):
     logs = []
@@ -238,7 +264,7 @@ def download_file(url, name, path='temp/'):
             os.makedirs(path)
             logs.append(['s', 'Directory created: '+path])
         except Exception as e:
-            logs.append(['e', str(e)])
+            logs.append(['w', str(e)])
 
         try:
             r = requests.get(url, allow_redirects=True)

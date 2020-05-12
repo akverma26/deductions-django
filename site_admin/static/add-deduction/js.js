@@ -24,6 +24,45 @@ $(document).ready(function(){
                 $('.input-details').html(data.html);
             }
         });
+
+        trackServer();
     });
 
 });
+
+function trackServer(delete_keys=[]) {
+    $.ajax({
+        type: 'GET',
+        url: '/site-admin/track-server/',
+        data: {'delete-keys': delete_keys},
+        success: function(data){
+
+            if( data.fetched_files_html ){
+                $('.input-details').html(data.fetched_files_html);
+                
+                setTimeout(
+                    function(){
+                        trackServer(['fetched_files_html']);
+                    }, 1000
+                );
+            }
+
+            if(data.refresh_downloading) {
+                for( var el in data.refresh_downloading ) {
+                    $('#'+el).html(data.refresh_downloading['el']);
+                    console.log(el, data.refresh_downloading['el'])
+                }
+            }
+
+            if(data.finish) {}
+            else {
+                setTimeout(
+                    function(){
+                        trackServer();
+                    }, 1000
+                );
+
+            }
+        }
+    });
+}
