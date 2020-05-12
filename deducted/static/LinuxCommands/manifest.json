@@ -1,0 +1,25 @@
+{
+	"title": "Linux Commands",
+
+	"description": "Experience some useful linux commands (specially for Ubuntu).",
+
+	"author": "Ankit Kumar Verma",
+
+	"author_profile_link": "https://akverma26.github.io/",
+
+	"page_type": "Independent",
+
+	"static": [
+		"css.css", "js.js", "content.xml"
+	],
+
+	"templates": [
+		"index.html"
+	],
+
+	"data": {
+		"script": ["script.py"],
+
+		"data": {}
+	}
+}

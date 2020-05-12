@@ -1,0 +1,24 @@
+{
+	"title": "Work with Modern GL and GLSL",
+
+	"description": "Do you want to learn how to give shades to objects using modern GL? GLSL can help you. Learn how to use GLSL with python.",
+
+	"author": "Ankit Kumar Verma",
+
+	"author_profile_link": "https://akverma26.github.io/",
+
+	"page_type": "Typora",
+
+	"static": [
+	],
+
+	"templates": [
+		"index.html"
+	],
+
+	"data": {
+		"script": [],
+
+		"data": {}
+	}
+}

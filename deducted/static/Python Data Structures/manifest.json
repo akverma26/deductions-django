@@ -1,0 +1,24 @@
+{
+	"title": "Python Data Structures List, Tuple, Set and Dictionary",
+
+	"description": "Get the basic idea of the built-in Data Structures in Python i.e. Python List, Tuple, Set and Dictionary",
+
+	"author": "Ankit Kumar Verma",
+
+	"author_profile_link": "https://akverma26.github.io/",
+
+	"page_type": "Typora",
+
+	"static": [
+	],
+
+	"templates": [
+		"index.html"
+	],
+
+	"data": {
+		"script": [],
+
+		"data": {}
+	}
+}

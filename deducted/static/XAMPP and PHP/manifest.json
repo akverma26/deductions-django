@@ -1,0 +1,24 @@
+{
+	"title": "XAMPP and PHP",
+
+	"description": "How to run a XAMPP server in linux and how to launch it. Got stuck with XAMPP server problems, this may help you.",
+
+	"author": "Ankit Kumar Verma",
+
+	"author_profile_link": "https://akverma26.github.io/",
+
+	"page_type": "Typora",
+
+	"static": [
+	],
+
+	"templates": [
+		"index.html"
+	],
+
+	"data": {
+		"script": [],
+
+		"data": {}
+	}
+}

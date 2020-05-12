@@ -1,23 +1,44 @@
-.deductions-div > a {
-    margin-top: 80px;
+.deductions-div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .deductions-div > a {
+    margin: 40px;
+    flex: 33.33%;
+    max-width: calc(33.33% - 80px);
+    height: max-content;
     text-decoration: none;
 }
 
-a[class*='deduction']:hover {
-   box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+@media only screen and (max-width: 1500px) {
+    .deductions-div > a {
+        flex: 50%;
+        max-width: calc(50% - 40px);
+        margin: 40px 20px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .deductions-div > a {
+        flex: 100%;
+        max-width: calc(100% - 20px);
+        margin: 20px 10px;
+    }
 }
 
 a[class*='deduction'] {
     width: 100%;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    /* box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); */
+    border: 1px solid rgba(50, 50, 80, 0.1);
     color: rgb(50, 50, 80);
     position: relative;
-    background: white;
+    background: rgba(255,255, 255, 1);
     display: block;
+    backdrop-filter: blur(20px);
+    opacity: 0;
 }
 
 a[class*='deduction'] .title {
@@ -31,6 +52,9 @@ a[class*='deduction'] .title {
 
 a[class*='deduction'] .info-1 {
     padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 30px;
 }
 
 a[class*='deduction'] .info-1 span {
@@ -52,6 +76,9 @@ a[class*='deduction'] .info-2 {
     padding: 10px 20px;
     padding-bottom: 40px;
     border-bottom-right-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 30px;
 }
 
 a[class*='deduction'] .info-2 i {
@@ -87,7 +114,7 @@ a[class*='deduction'] .header span:nth-last-child(2) {
     font-family: GoogleSans;
 }
 
-.fresh-deduction {
+/* .fresh-deduction {
     color: rgb(50, 50, 80);
 }
 
@@ -109,4 +136,4 @@ a.updated-deduction .tag {
 
 a.updated-deduction .header {
     color: rgb(50, 80, 80);
-}
+} */

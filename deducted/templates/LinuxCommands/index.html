@@ -23,8 +23,8 @@
 <script src="{% static 'prism/plugins/normalize-whitespace/prism-normalize-whitespace.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'prism/prism.css' %}">
 
-<link rel="stylesheet" type="text/css" href="{% static 'LearnDjango/css.css' %}">
-<script src="{% static 'LearnDjango/js.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'LinuxCommands/css.css' %}">
+<script src="{% static 'LinuxCommands/js.js' %}"></script>
 
 {% endblock %}
 
@@ -47,9 +47,7 @@
             <span> <i class="fas fa-calendar-check"></i> {{ deduction.date_last_modified|date }}</span>
         </div>
         <div class="description">
-            <b>Django</b> is a Python-based free and open-source web framework, which follows the model-template-view architectural pattern.<br>
-            Just go through this short tutorial to learn all about <b class="diff">Django</b>. It will give you an idea, that how <b class="diff">Django</b> works and what you
-            can do with Django.
+            {{ deduction.description }}
         </div>
         <div class="info-2">
             <i class="fas fa-tags"></i>
@@ -67,17 +65,65 @@
 
 {% block main-body %}
 <div class="deducted-page">
-
-        <div class="deduction-content">
-            {% include 'LearnDjango/install-django.html' %}
-            {% include 'LearnDjango/start-project.html' %}
-            {% include 'LearnDjango/create-app.html' %}
-            {% include 'LearnDjango/show-custom-view.html' %}
-            {% include 'LearnDjango/show-custom-view2.html' %}
-            {% include 'LearnDjango/data-exchange.html' %}
-            {% include 'LearnDjango/models.html' %}
-        </div>
         
+        <div class="deduction-content">
+
+            {% for command in commands %}
+
+            <div class="step-div">
+
+                <div class="step-title-div">
+                    <div class="step-title">
+                        <div class="step-title-text">
+                            {{ command.title }}
+                        </div>
+                    </div>
+                    <div class="title-info-button-div">
+                        <div class="title-info-button">
+                            i
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="step-description-div">
+                    <div class="step-description">
+
+                        {% for cmd in command.commands %}
+            
+                        <div class="code-info-div">
+            
+                            <div class="code-div">
+                                <pre class="language-python bright">
+                                    <code>
+                                        {{ cmd.command }}
+                                    </code>
+                                </pre>
+                                <div class="code-info-button-div">
+                                    <div class="code-info-button">
+                                        i
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="code-description-div">
+                                <div class="code-description">
+                                    {{ cmd.info }}
+                                </div>
+                            </div>
+            
+                        </div>
+
+                        {% endfor %}
+            
+                    </div>
+                </div>
+            
+            </div>
+
+            {% endfor %}
+        
+        </div>
+
 </div>
 
 {% endblock %}

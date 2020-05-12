@@ -1,0 +1,24 @@
+{
+	"title": "Learn how to use OpenGL GLFW instead of GLUT",
+
+	"description": "GLFW is a lightweight utility library for use with OpenGL. Use GLFW for context instead of GLUT. Learn how to use GLFW with python with an example.",
+
+	"author": "Ankit Kumar Verma",
+
+	"author_profile_link": "https://akverma26.github.io/",
+
+	"page_type": "Typora",
+
+	"static": [
+	],
+
+	"templates": [
+		"index.html"
+	],
+
+	"data": {
+		"script": [],
+
+		"data": {}
+	}
+}

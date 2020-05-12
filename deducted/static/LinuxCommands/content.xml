@@ -1,0 +1,125 @@
+<linux_Commands>
+
+    <!-- <block>
+        <title></title>
+        <command>
+            <c></c>
+            <i></i>
+        </command>
+    </block> -->
+
+    <block>
+        <title>Set proxy for terminal in Linux</title>
+        <command>
+            <c>cd /etc/apt</c>
+            <i>Step 1: Go to the directory <b>root/etc/apt</b></i>
+        </command>
+        <command>
+            <c>sudo gedit apt.conf</c>
+            <i>
+                Step 2: Edit file <b>apt.conf</b>
+                (If not exists <b>gedit</b> will create and you you can use other text editor also, if you don't have <b>gedit</b>.)
+            </i>
+        </command>
+        <command>
+            <c>
+                Acquire::http::proxy "proxy:port";
+                Acquire::https::proxy "proxy:port";
+                Acquire::ftp::proxy "proxy:port";
+            </c>
+            <i>
+                Step 3: Copy and paste this in that file and don't forget to replace <b>proxy:port</b>
+                with your network proxy and port.
+            </i>
+        </command>
+        <command>
+            <c>sudo nautilus</c>
+            <i>
+                If you are not comfortable with commands, don't worry, run this command,
+                this is will open file explorer as root, now you will be able to create and edit
+                files anywhere. Now go to the directory and create <b>'apt.conf'</b> file and paste
+                above text. If <b>nautlius</b> is not installed, Install it by running this command
+                <b><i>sudo apt-get install nautlius</i></b>.
+            </i>
+        </command>
+    </block>
+
+    <block>
+        <title>Find out which program is using internet at how much speed</title>
+        <command>
+            <c>sudo apt-get install nethogs</c>
+            <i>Step 1: Install 'nethogs' package, if it is not installed.</i>
+        </command>
+        <command>
+            <c>sudo nethogs [interface]</c>
+            <i>
+                Step2: Run this command and observe it for a while.
+                [interface] can be eth0, wlan0 etc.
+                How to know your [interface], run following command.
+                Use 'htop' to graphically kill the process.
+            </i>
+        </command>
+        <command>
+            <c>ifconfig -a</c>
+            <i>
+                You can find which interface you are using by running this command.
+                An interface assigned an IP address is your current active interface.
+            </i>
+        </command>
+    </block>
+
+    <block>
+        <title>Install Ubuntu Tweak Tool for customization</title>
+        <command>
+            <c>sudo add-apt-repository ppa:trebelnik-stefina/ubuntu-tweak</c>
+            <i>Step 1: Add its repository to your package search list.</i>
+        </command>
+        <command>
+            <c>sudo apt-get install ubuntu-tweak</c>
+            <i>Step 2: Now install the package.</i>
+        </command>
+    </block>
+
+    <block>
+        <title>Fix time difference problem after dual booting</title>
+        <command>
+            <c>timedatectl set-local-rtc 1 --adjust-system-clock</c>
+            <i>
+                After dual booting, when you switch from one os to another,
+                this problem may occur that time is not correct even time is absolutely fine in other os.
+                Fix this problem by running this command in your linux terminal.
+            </i>
+        </command>
+    </block>
+
+    <block>
+
+        <title>Disable snapd packages (Disable auto update)</title>
+        <command>
+            <c>sudo systemctl stop snapd.service</c>
+            <i>Disable snap packages (until reboot or if you run with start)</i>
+        </command>
+        <command>
+            <c>sudo systemctl stop snapd.service && sudo systemctl disable snapd.service</c>
+            <i>Disable Snap Packages permanently</i>
+        </command>
+        <command>
+            <c>sudo systemctl reenable snapd.service && sudo systemctl start snapd.service</c>
+            <i>Re-Enable Snap Packages</i>
+        </command>
+
+    </block>
+
+    <block>
+        <title>Run OpenGL (GLUT) C++ program in your linux system</title>
+        <command>
+            <c>sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev</c>
+            <i>Step 1: Install GLUT if it is not installed.</i>
+        </command>
+        <command>
+            <c>g++ glut.cpp -lGL -lGLU -lglut</c>
+            <i>Step 2: Now run your c++ file (let your c++ file is 'glut.cpp').</i>
+        </command>
+    </block>
+
+</linux_Commands>
