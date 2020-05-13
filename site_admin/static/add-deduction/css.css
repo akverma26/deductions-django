@@ -72,3 +72,16 @@ td {
 td div {
     margin: 5px 0;
 }
+
+#logs {
+    margin-top: 50px;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    min-height: 500px;
+}

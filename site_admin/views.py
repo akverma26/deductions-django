@@ -21,6 +21,7 @@ PRE_DIR = 'deducted/'
 # PRE_DIR = ''
 
 track_server_data = {}
+server_logs = []
 
 # Create your views here.
 def site_admin(request):
@@ -162,7 +163,8 @@ def refresh_fetch_files(deductions):
 
     all_manifest = []
     for deduction in deductions:
-        print('Fetching... ', deduction)
+        
+        server_logs.append(['m', 'Fetching... '+str(deduction.id)])
 
         manifest = deduction.manifest_url
 
@@ -181,8 +183,14 @@ def refresh_fetch_files(deductions):
                 'static': static, 'templates': templates, 'scripts': scripts, 'extra': extra,
             }
         )
+
+        server_logs.append(['m', 'Fetching Done for '+str(deduction.id)])
+
     html = loader.render_to_string('add-deduction/refresh-fetched-files.html', {'all_manifest': all_manifest})
     track_server_data['fetched_files_html'] = html
+
+    server_logs.append(['m', 'FETCHING COMPLETE!'])
+
     return all_manifest
 
 def refresh_download_files(manifest_url):
@@ -222,17 +230,30 @@ def refresh_download_files(manifest_url):
             PARENT_DIR + PRE_DIR  +'static/'+folder_name
         )
 
-    print(logs)
-
     return logs
 
 def refresh_files(request):
     track_server_data.clear()
     deductions = Deducted.objects.all()
 
+    global server_logs
+    server_logs.append(['m', 'DATA FETCHING STARTED.'])
+
     all_manifest = refresh_fetch_files(deductions)
+
+    server_logs.append(['m', 'DOWNLOADING STARTED.'])
+
     for manifest in all_manifest:
         logs = refresh_download_files(manifest['manifest_url'])
+
+        server_logs += logs
+
+        try:
+            if not track_server_data['refresh_downloading']:
+                track_server_data['refresh_downloading'] = {}
+        except:
+            track_server_data['refresh_downloading'] = {}
+
 
         failed = False
         for log in logs:
@@ -240,12 +261,15 @@ def refresh_files(request):
                 failed = True
                 break
         if failed:
-            track_server_data['refresh_downloading'][manifest[id]] = 'Failed'
+            track_server_data['refresh_downloading'][manifest['id']] = 'Failed'
+            server_logs.append(['e', 'FAILED '+manifest['id']])
         else:
-            track_server_data['refresh-_downloading'][manifest[id]] = 'Success'
+            track_server_data['refresh_downloading'][manifest['id']] = 'Success'
+            server_logs.append(['s', 'Success '+manifest['id']])
 
     track_server_data['finish'] = True
-    return JsonResponse({})
+    server_logs.append(['m', 'DONE !!!'])
+    return JsonResponse({'logs': server_logs})
 
 def track_server(request):
     keys = request.GET.getlist('delete-keys[]')
@@ -268,10 +292,13 @@ def download_file(url, name, path='temp/'):
 
         try:
             r = requests.get(url, allow_redirects=True)
-            f = open(path+name, 'wb')
-            f.write(r.content)
-            f.close()
-            logs.append(['s', 'File downloaded: '+path+name])
+            if r.content.decode().find('<title>Page not found · GitHub · GitHub</title>') > -1:
+                logs.append(['e', 'Invalid URL Not Found'])
+            else:
+                f = open(path+name, 'wb')
+                f.write(r.content)
+                f.close()
+                logs.append(['s', 'File downloaded: '+path+name])
         except Exception as e:
             logs.append(['e', str(e)])
     else:
