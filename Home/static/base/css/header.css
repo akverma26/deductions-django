@@ -1,0 +1,53 @@
+.header-wrapper {
+    margin: auto;
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-width: 1200px;
+}
+
+.header-logo-wrapper {
+    margin: auto;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-logo-image-wrapper {
+    margin: auto;
+    box-shadow: 8px 4px 16px rgba(0,0,0,0.1);
+    padding: 20px;
+    height: 70px;
+    width: 70px;
+    display: flex;
+    border-radius: 100%;
+}
+
+.header-logo-image {
+    height: 30px;
+    margin: auto;
+}
+
+.header-logo-text-wrapper {
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--theme-bg-color);
+}
+
+.header-logo-text {
+    font-size: 30px;
+    letter-spacing: 5px;
+    font-variant: small-caps;
+    font-family: MerriWeatherBB;
+    font-weight: bolder;
+}
+
+.header-logo-tagline {
+    color: rgb(100, 100, 100);
+    
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+
+<head>
+
+    {% block head-meta %}
+        <title> Deductions | Blog by Ankit Kumar Verma </title>
+        <meta name="description" content="Going through something throughly is not possible everytime, so here, Get the DEDUCTED form. I have shared some useful things that may be helpful for you. So get into it, you are welcome.">
+        <meta charset="UTF-8"><meta name="keywords" content="Deductions, Deduction, Blog, Tech Blog, Technology, CSE, Computer, PC, Programming, Coding, Developing, C, C++, Python">
+    {% endblock %}
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Ankit Kumar Verma">
+    <meta name="theme-color" content="rgb(80, 80, 80)" />
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'base/images/favicon.ico' %}"/>
+
+    <script src="https://kit.fontawesome.com/3e6d2d4d16.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/css.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/top-bar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/footer.css' %}">
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+
+<body>
+    
+    <div class="blur-overlay"></div>
+    
+    <div class="top-bar-fixed-wrapper">
+        <a class="top-bar-logo-wrapper" href="/" title="Go to Home">
+            <div class="top-bar-logo">
+                <img src="{% static 'base/images/logo.png' %}" alt="logo">
+            </div>
+            <div class="top-bar-title">
+                <span>{ Deductions }</span>
+            </div>
+        </a>
+        <div class="top-bar-social-wrapper">
+            <a href="https://akverma26.github.io/" target="_blank" title="My Portfolio">
+                <i class='fas fa-globe'></i>
+                <span>Porfolio</span>
+            </a>
+            <a href="https://github.com/akverma26/" target="_blank" title="My GitHub">
+                <i class="fab fa-github"></i>
+                <span>Github</span>
+            </a>
+            <a href="https://www.linkedin.com/in/akverma26/" target="_blank" title="My Linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                <span>Linkedin</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="header-wrapper">
+        <div class="header-logo-wrapper">
+            <div class="header-logo-image-wrapper">
+                <img src="{% static 'base/images/logo.png' %}" class="header-logo-image" alt="logo">
+            </div>
+            <div class="header-logo-text-wrapper">
+                <div class="header-logo-text">
+                    { Deductions }
+                </div>
+                <div class="header-logo-tagline">
+                    Deducted but Complete...!
+                </div>
+            </div>
+        </div>
+        {% block header %}
+        {% endblock %}
+    </div>
+
+    <div class="main-body-wrapper">
+        {% block main-body %}
+        {% endblock %}
+    </div>
+
+    <div class="footer-wrapper">
+        <div class="footer-content">
+            <div class="feedback">
+                <span>Let me know if anything is wrong or any bug here or you have any suggestion for me.</span>
+                <a href="https://github.com/akverma26/Deductions" target="_blank">Fork me at Github</a>
+                <span>or</span>
+                <a target="_blank" href="mailto:akverma0026@google.com?Subject=Blog_Mail">mail me!</a>
+            </div>
+            <div class="credits">
+                <span>Credits:</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

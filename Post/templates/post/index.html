@@ -1,0 +1,57 @@
+{% extends 'base/index.html' %}
+{% load static %}
+{% load tags_filters %}
+
+{% block head-meta %}
+    <title>{{ post.title }} | Deductions | Blog by Ankit Kumar Verma</title>
+    <meta name="description" content="{{ post.description }}">
+    <meta name="keywords" content="Deductions, Deduction, Blog, {{ post.tags }}, Tech Blog, Technology, CSE, Computer, PC, Programming, Coding, Developing, C, C++, Python">
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'post/css.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'post/typora.css' %}">
+{% endblock %}
+
+{% block header %}
+
+<div class="header-post-details-wrapper">
+    <div class="post-title">
+        {{ post.title }}
+    </div>
+    <div class="post-info">
+        <span title="Author">
+            <i class="fas fa-pencil-alt"></i>
+            <span>{{ post.author }}</span>
+        </span>
+        <span title="Date Uploaded">
+            <i class="fas fa-calendar-plus"></i>
+            <span>{{ post.date_uploaded|date }}</span>
+        </span>
+        <span title="Date Last Modified">
+            <i class="fas fa-calendar-check"></i>
+            <span>{{ post.date_last_modified|date }}</span>
+        </span>
+    </div>
+    <div class="post-description">
+        {{ post.description }}
+    </div>
+    <div class="post-tags">
+        {% with tags=post.tags|split:" " %}
+            {% for tag in tags %}
+                <span>
+                    <i class="fas fa-tags"></i>
+                    {{ tag }}
+                </span>
+            {% endfor %}
+        {% endwith %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block main-body %}
+<div class="post-content" style="line-height: 30px;">
+    {{ html|safe }}
+</div>
+{% endblock %}

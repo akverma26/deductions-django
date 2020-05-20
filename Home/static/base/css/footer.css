@@ -1,0 +1,30 @@
+.footer-wrapper {
+    margin: auto;
+    padding: 50px 10px;
+    display: flex;
+    color: rgb(100, 100, 100);
+    font-size: 14px;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0px -4px 16px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    margin: auto;
+}
+
+.footer-content .feedback {
+    margin-bottom: 20px;
+}
+
+.footer-content .feedback a {
+    color: rgb(100, 100, 100);
+}
+
+.footer-content .credits {
+    box-shadow: var(--theme-box-shadow);
+    padding: 5px 20px;
+    border-radius: 20px;
+}

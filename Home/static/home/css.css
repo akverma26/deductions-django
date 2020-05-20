@@ -1,0 +1,72 @@
+.main-body-wrapper {
+    display: flex;
+}
+
+.home-post-list {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+.home-post-wrapper {
+    width: 100%;
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: var(--theme-box-shadow);
+    color: rgb(80, 80, 80);
+    margin-top: 100px;
+    display: block;
+    text-decoration: none;
+}
+
+.home-post-wrapper:first-child {
+    margin-top: 0;
+}
+
+.home-post-wrapper .post-title {
+    font-family: MerriWeatherBB;
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.home-post-wrapper .post-title:first-letter {
+    font-size: 40px;
+}
+
+.home-post-wrapper .post-info {
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.home-post-wrapper .post-info span {
+    color: rgb(100, 100, 100);
+}
+
+.home-post-wrapper .post-info i {
+    margin: 0 5px;
+}
+
+.home-post-wrapper .post-description:first-letter {
+    font-size: 25px;
+}
+
+.home-post-wrapper .post-tags {
+    margin-top: 40px;
+    font-size: 12px;
+    color: rgb(100, 100, 100);
+}
+
+.home-post-wrapper .post-tags i {
+    margin-right: 5px;
+}
+
+.home-post-wrapper .post-tags span {
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 20px;
+}
+
+.home-post-wrapper .post-tags span:first-child {
+    margin-left: 0;
+}
